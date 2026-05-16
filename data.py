@@ -2,7 +2,8 @@ import os
 import fastf1
 import numpy as np
 import pandas as pd
-import matplotlib
+import matplotlib.pyplot as plt
+import time
 
 
 os.makedirs('/Users/rishitsingh/Desktop/F1_podium/cache', exist_ok=True)
@@ -66,7 +67,7 @@ for year in range(2018, 2025):
 
         except Exception as e:
             print(f"Error processing Qualifying session for Year: {year}, Round: {Race_Number}. Error: {e}")
-            continue
+            
 
 
 
@@ -93,7 +94,7 @@ for year in range(2018, 2025):
             results_R_df['Round'] = Race_Number
 
             #make podium winners 1 and rest 0
-            results_R_df['Position'] = results_R_df['Position'].apply(lambda x: 1 if str(x) in ['1', '2', '3'] else 0)
+            results_R_df['Podium'] = results_R_df['Position'].apply(lambda x: 1 if str(x) in ['1', '2', '3'] else 0)
 
             
             laps_R_df = laps[['DriverNumber', 'LapTime', 'LapNumber', 'IsPersonalBest']]
@@ -108,9 +109,10 @@ for year in range(2018, 2025):
 
         except Exception as e:
             print(f"Error processing Race session for Year: {year}, Round: {Race_Number}. Error: {e}")
-            continue
+            
 
         Race_Number+=1
+        time.sleep(1)  # Sleep for 1 second to avoid overwhelming the API
 
 pd.concat(all_quali_results, ignore_index=True).to_csv('data/quali_results.csv', index=False)
 pd.concat(all_quali_laps,    ignore_index=True).to_csv('data/quali_laps.csv',    index=False)
