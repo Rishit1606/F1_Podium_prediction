@@ -10,7 +10,7 @@ os.makedirs('/Users/rishitsingh/Desktop/F1_podium/cache', exist_ok=True)
 os.makedirs('/Users/rishitsingh/Desktop/F1_podium/data',  exist_ok=True)
 
 
-
+# Enable caching to speed up data retrieval 
 fastf1.Cache.enable_cache('/Users/rishitsingh/Desktop/F1_podium/cache')
 
 # We will drop each race's dataframe into this list inside the loop
@@ -94,7 +94,7 @@ for year in range(2018, 2025):
             results_R_df['Round'] = Race_Number
 
             #make podium winners 1 and rest 0
-            results_R_df['Podium'] = results_R_df['Position'].apply(lambda x: 1 if str(x) in ['1', '2', '3'] else 0)
+            results_R_df['Podium'] = results_R_df['Position'].apply(lambda x: 1 if pd.notna(x) and float(x) in [1.0, 2.0, 3.0] else 0)
 
             
             laps_R_df = laps[['DriverNumber', 'LapTime', 'LapNumber', 'IsPersonalBest']]
