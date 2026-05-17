@@ -56,6 +56,7 @@ for year in range(2018, 2025):
 
             
             laps_Q_df = laps[['DriverNumber', 'LapTime', 'LapNumber', 'IsPersonalBest']]
+            results_Q_df['EventName'] = session.event['EventName']
 
             # Without Year and Round we won't know which race this lap belongs to after combining all races
             laps_Q_df['Year']  = year
@@ -89,6 +90,7 @@ for year in range(2018, 2025):
 
             results_R_df = pd.DataFrame(results)          # ← convert results to DataFrame
             results_R_df = results_R_df[['DriverNumber', 'Abbreviation', 'TeamName', 'GridPosition', 'Position', 'Points']]
+            results_R_df['EventName'] = session.event['EventName']
 
             results_R_df['Year']  = year
             results_R_df['Round'] = Race_Number
@@ -115,7 +117,7 @@ for year in range(2018, 2025):
         time.sleep(1)  # Sleep for 1 second to avoid overwhelming the API
 
 pd.concat(all_quali_results, ignore_index=True).to_csv('data/quali_results.csv', index=False)
-pd.concat(all_quali_laps,    ignore_index=True).to_csv('data/quali_laps.csv',    index=False)
+# pd.concat(all_quali_laps,    ignore_index=True).to_csv('data/quali_laps.csv',    index=False)
 pd.concat(all_race_results,  ignore_index=True).to_csv('data/race_results.csv',  index=False)
-pd.concat(all_race_laps,     ignore_index=True).to_csv('data/race_laps.csv',     index=False)
+# pd.concat(all_race_laps,     ignore_index=True).to_csv('data/race_laps.csv',     index=False)
 
