@@ -32,3 +32,7 @@ print(classification_report(y_test, y_pred))
 
 print("Confusion Matrix:")
 print(confusion_matrix(y_test, y_pred))
+
+# Save the trained model to a file
+with open('/Users/rishitsingh/Desktop/F1_podium/model/xgb_model.pkl', 'wb') as file:
+    pickle.dump(model, file)    
