@@ -40,7 +40,7 @@ model_df['ChampionshipPos'] = model_df['ChampionshipPos'].fillna(10)
 # Processed Dataframe 
 Processed_df = model_df[['DriverNumber', 'Abbreviation', 'TeamName', 'Year', 'Round', 'EventName', 'GridPosition_race', 'DriverAvgLast3', 'TrackHistoryAvg', 'TeamAvgSeason', 'ChampionshipPos', 'Podium']]
 
-# save as CSV
+# save as csv
 Processed_df.to_csv('/Users/rishitsingh/Desktop/F1_podium/data/processed_data.csv', index=False)
 
 
