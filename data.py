@@ -1,8 +1,6 @@
 import os
 import fastf1
-import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import time
 
 
@@ -19,7 +17,7 @@ all_quali_laps    = []
 all_race_results  = []
 all_race_laps     = []
 
-for year in range(2018, 2025):
+for year in range(2018, 2027):
     # Get the event schedule for the specified year
     schedule = fastf1.get_event_schedule(year, include_testing=False)  # Set include_testing to False to exclude pre-season testing sessions
 

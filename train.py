@@ -1,6 +1,8 @@
+import os
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 from sklearn.metrics import classification_report, confusion_matrix
+import pickle
 import pandas as pd
 
 # Load the processed data
@@ -19,7 +21,7 @@ model = XGBClassifier(
     max_depth=4,
     learning_rate=0.1,
     random_state=42,
-    scale_pos_weight=7  # ← tells model podiums are rare, pay more attention!
+    scale_pos_weight=6  # ← tells model podiums are rare
 )
 model.fit(X_train, y_train)
 
@@ -32,3 +34,12 @@ print(classification_report(y_test, y_pred))
 
 print("Confusion Matrix:")
 print(confusion_matrix(y_test, y_pred))
+
+os.makedirs('/Users/rishitsingh/Desktop/F1_podium/model', exist_ok=True)
+
+# Save the trained model to a file
+with open('/Users/rishitsingh/Desktop/F1_podium/model/xgb_model.pkl', 'wb') as file:
+    pickle.dump(model, file)    
+
+
+
