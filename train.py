@@ -39,7 +39,4 @@ os.makedirs('/Users/rishitsingh/Desktop/F1_podium/model', exist_ok=True)
 
 # Save the trained model to a file
 with open('/Users/rishitsingh/Desktop/F1_podium/model/xgb_model.pkl', 'wb') as file:
-    pickle.dump(model, file)    
-
-
-
+    pickle.dump(model, file)  
