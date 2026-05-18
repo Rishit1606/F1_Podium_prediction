@@ -7,7 +7,7 @@ import os
 # change these to predict any race
 
 YEAR  = 2026
-ROUND = 3  # Miami GP
+ROUND = 3  # Japan GP
 
 
 # Load the trained model
