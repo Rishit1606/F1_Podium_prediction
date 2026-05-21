@@ -6,7 +6,7 @@ import os
 
 # change these to predict any race
 
-YEAR  = 2026
+YEAR  = 2018
 ROUND = 3  # Japan GP
 
 
