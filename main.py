@@ -6,8 +6,8 @@ import os
 
 # change these to predict any race
 
-YEAR  = 2018
-ROUND = 3  # Japan GP
+YEAR  = 2026
+ROUND = 6  # Monaco GP
 
 
 # Load the trained model
