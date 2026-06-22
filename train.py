@@ -6,7 +6,8 @@ import pickle
 import pandas as pd
 
 # Load the processed data
-data = pd.read_csv('/Users/rishitsingh/Desktop/F1_podium/data/processed_data.csv')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+data = pd.read_csv(os.path.join(BASE_DIR, 'data', 'processed_data.csv'))
 
 # Define features and target variable
 X = data[['GridPosition_race', 'DriverAvgLast3', 'TrackHistoryAvg', 'TeamAvgSeason', 'ChampionshipPos']]
@@ -35,8 +36,8 @@ print(classification_report(y_test, y_pred))
 print("Confusion Matrix:")
 print(confusion_matrix(y_test, y_pred))
 
-os.makedirs('/Users/rishitsingh/Desktop/F1_podium/model', exist_ok=True)
+os.makedirs(os.path.join(BASE_DIR, 'model'), exist_ok=True)
 
 # Save the trained model to a file
-with open('/Users/rishitsingh/Desktop/F1_podium/model/xgb_model.pkl', 'wb') as file:
+with open(os.path.join(BASE_DIR, 'model', 'xgb_model.pkl'), 'wb') as file:
     pickle.dump(model, file)  

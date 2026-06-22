@@ -4,12 +4,12 @@ import pandas as pd
 import time
 
 
-os.makedirs('/Users/rishitsingh/Desktop/F1_podium/cache', exist_ok=True)
-os.makedirs('/Users/rishitsingh/Desktop/F1_podium/data',  exist_ok=True)
-
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+os.makedirs(os.path.join(BASE_DIR, 'cache'), exist_ok=True)
+os.makedirs(os.path.join(BASE_DIR, 'data'), exist_ok=True)
 
 # Enable caching to speed up data retrieval 
-fastf1.Cache.enable_cache('/Users/rishitsingh/Desktop/F1_podium/cache')
+fastf1.Cache.enable_cache(os.path.join(BASE_DIR, 'cache'))
 
 # We will drop each race's dataframe into this list inside the loop
 all_quali_results = []
@@ -114,8 +114,8 @@ for year in range(2018, 2027):
         Race_Number+=1
         time.sleep(1)  # Sleep for 1 second to avoid overwhelming the API
 
-pd.concat(all_quali_results, ignore_index=True).to_csv('data/quali_results.csv', index=False)
+pd.concat(all_quali_results, ignore_index=True).to_csv(os.path.join(BASE_DIR, 'data', 'quali_results.csv'), index=False)
 # pd.concat(all_quali_laps,    ignore_index=True).to_csv('data/quali_laps.csv',    index=False)
-pd.concat(all_race_results,  ignore_index=True).to_csv('data/race_results.csv',  index=False)
+pd.concat(all_race_results, ignore_index=True).to_csv(os.path.join(BASE_DIR, 'data', 'race_results.csv'), index=False)
 # pd.concat(all_race_laps,     ignore_index=True).to_csv('data/race_laps.csv',     index=False)
 

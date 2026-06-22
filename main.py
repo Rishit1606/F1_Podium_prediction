@@ -12,15 +12,16 @@ ROUND = 6  # Monaco GP
 
 # Load the trained model
 
-with open('/Users/rishitsingh/Desktop/F1_podium/model/xgb_model.pkl', 'rb') as f:
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+with open(os.path.join(BASE_DIR, 'model', 'xgb_model.pkl'), 'rb') as f:
     model = pickle.load(f)
     print(model.get_booster().feature_names)
 
 # Load processed data
-historical_df = pd.read_csv('/Users/rishitsingh/Desktop/F1_podium/data/processed_data.csv')
+historical_df = pd.read_csv(os.path.join(BASE_DIR, 'data', 'processed_data.csv'))
 
 
-fastf1.Cache.enable_cache('/Users/rishitsingh/Desktop/F1_podium/cache')
+fastf1.Cache.enable_cache(os.path.join(BASE_DIR, 'cache'))
 
 # Fetch qualifying session for the specified race
 quali = fastf1.get_session(YEAR, ROUND, 'Q')
