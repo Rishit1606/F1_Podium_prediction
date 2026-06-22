@@ -1,8 +1,9 @@
 import pandas as pd
 
 
-races_df = pd.read_csv('/Users/rishitsingh/Desktop/F1_podium/data/race_results.csv')
-quali_df = pd.read_csv('/Users/rishitsingh/Desktop/F1_podium/data/quali_results.csv')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+races_df = pd.read_csv(os.path.join(BASE_DIR, 'data', 'race_results.csv'))
+quali_df = pd.read_csv(os.path.join(BASE_DIR, 'data', 'quali_results.csv'))
 
 #Getting a dtaframe that can be put in the model for training and testing
 
@@ -41,7 +42,7 @@ model_df['ChampionshipPos'] = model_df['ChampionshipPos'].fillna(10)
 Processed_df = model_df[['DriverNumber', 'Abbreviation', 'TeamName', 'Year', 'Round', 'EventName', 'GridPosition_race', 'Position_race', 'Points_race', 'DriverAvgLast3', 'TrackHistoryAvg', 'TeamAvgSeason', 'ChampionshipPos', 'Podium']]
 
 # save as csv
-Processed_df.to_csv('/Users/rishitsingh/Desktop/F1_podium/data/processed_data.csv', index=False)
+Processed_df.to_csv(os.path.join(BASE_DIR, 'data', 'processed_data.csv'), index=False)
 
 
 
