@@ -1,5 +1,5 @@
 import os
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score
 from xgboost import XGBClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 import pickle
@@ -29,12 +29,25 @@ model.fit(X_train, y_train)
 # Make predictions on the test set
 y_pred = model.predict(X_test)
 
-# Evaluate the model
+### Evaluate the model
 print("Classification Report:")
 print(classification_report(y_test, y_pred))
 
 print("Confusion Matrix:")
-print(confusion_matrix(y_test, y_pred))
+print(f"{confusion_matrix(y_test, y_pred)}\n")
+
+# running train-test Split 5 times on different sizes 
+print("Cross validation score:")
+scores = cross_val_score(model, X, y, cv=5)
+print(f"{scores}\n")
+
+# average score of the model
+print("Average Cross_validation score:")
+print(f"{scores.mean()}\n")
+
+# the std deviation
+print("Standard deviation:")
+print(f"{scores.std()}\n")
 
 os.makedirs(os.path.join(BASE_DIR, 'model'), exist_ok=True)
 
